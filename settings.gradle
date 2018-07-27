@@ -2,8 +2,9 @@ rootProject.name = 'cloud-manager'
 
 include ':configuration'
 include ':configuration:configuration-service'
-//include ':discovery/eureka-service'
-//include ':monitor/service-administration'
-
-//project(":discovery/eureka-service").name = "eureka-service"
-//project(":monitor/service-administration").name = "service-administration"
+include ':discovery'
+include ':discovery:discovery-service'
+include ':integration-tests'
+include ':integration-tests:web-apps'
+include ':integration-tests:web-apps:fortune-service'
+include ':integration-tests:web-apps:greeting-ui'

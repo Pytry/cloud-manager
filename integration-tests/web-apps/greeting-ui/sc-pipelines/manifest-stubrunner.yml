@@ -1,0 +1,4 @@
+---
+applications:
+# the name of stubrunner has to correspond to the one in sc-pipelines manifest
+- name: stubrunner

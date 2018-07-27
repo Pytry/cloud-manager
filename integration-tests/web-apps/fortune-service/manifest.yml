@@ -1,0 +1,17 @@
+---
+applications:
+- name: fortune-service
+  timeout: 120
+#  random-route: true
+  path: ./target/fortune-service-0.0.1-SNAPSHOT.jar
+  services:
+  - fortune-db
+  - config-server
+  - cloud-bus
+  - service-registry
+  - circuit-breaker-dashboard
+  env:
+#    SPRING_PROFILES_ACTIVE: c2c
+    SPRING_PROFILES_ACTIVE: flyway
+    JAVA_OPTS: -Djava.security.egd=file:///dev/urandom
+    TRUST_CERTS: api.run.pivotal.io

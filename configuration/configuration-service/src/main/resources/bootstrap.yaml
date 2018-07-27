@@ -1,3 +1,9 @@
 spring:
   application:
     name: configuration-service
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.optum.com/jhoopes2/configuration-service-repo.git
+        bootstrap: true

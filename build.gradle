@@ -1,6 +1,8 @@
-apply plugin: 'base'
-apply plugin: 'idea'
-apply plugin: 'eclipse'
+plugins{
+    id 'base'
+    id 'idea'
+    id 'eclipse'
+}
 
 
 allprojects {
@@ -8,11 +10,3 @@ allprojects {
     group = 'org.xitikit.cloud'
     version = '0.0.1-SNAPSHOT'
 }
-
-subprojects {
-
-    apply plugin: 'base'
-    apply plugin: 'idea'
-    apply plugin: 'eclipse'
-}
-
