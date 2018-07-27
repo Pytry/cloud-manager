@@ -9,23 +9,23 @@ import org.springframework.stereotype.Service;
 @Service
 public class FortuneService {
 
-	Logger logger = LoggerFactory
-			.getLogger(FortuneService.class);
+    Logger logger = LoggerFactory
+     .getLogger(FortuneService.class);
 
-	@Autowired
-	FortuneRepository fortuneRepo;
+    @Autowired
+    FortuneRepository fortuneRepo;
 
-	@HystrixCommand(fallbackMethod = "getDefaultFortune")
-	public String getFortune(){
+    @HystrixCommand(fallbackMethod = "getDefaultFortune")
+    public String getFortune() {
 
-		Fortune fortune = fortuneRepo.findRandomFortune();
-		logger.debug("Got {}", fortune.toString());
-		return fortune.getText();
-	}
+        Fortune fortune = fortuneRepo.findRandomFortune();
+        logger.debug("Got {}", fortune.toString());
+        return fortune.getText();
+    }
 
-	public String getDefaultFortune(){
-		logger.debug("Default fortune used");
-		return "The fortuneteller will be back soon.";
-	}
+    public String getDefaultFortune() {
 
+        logger.debug("Default fortune used");
+        return "The fortuneteller will be back soon.";
+    }
 }

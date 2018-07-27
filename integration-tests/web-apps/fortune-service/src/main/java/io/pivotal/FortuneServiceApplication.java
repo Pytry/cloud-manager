@@ -16,26 +16,22 @@ import org.springframework.context.annotation.Bean;
 public class FortuneServiceApplication {
 
     Logger logger = LoggerFactory
-            .getLogger(FortuneServiceApplication.class);
+     .getLogger(FortuneServiceApplication.class);
 
     public static void main(String[] args) {
+
         SpringApplication.run(FortuneServiceApplication.class, args);
     }
 
     /**
-     *
      * Logs the database contents on startup
-     *
-     * @param fortuneRepo
-     * @return
      */
     @Bean
     CommandLineRunner loadDatabase(FortuneRepository fortuneRepo) {
+
         return args -> {
             logger.info("Fortune Repo record count: {}", fortuneRepo.count());
             fortuneRepo.findAll().forEach(x -> logger.debug(x.toString()));
         };
-
     }
-
 }

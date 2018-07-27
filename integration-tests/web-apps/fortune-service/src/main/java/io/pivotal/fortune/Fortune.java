@@ -12,16 +12,18 @@ public class Fortune {
     private String text;
 
     public Long getId() {
+
         return id;
     }
 
     public String getText() {
+
         return text;
     }
 
     @Override
     public String toString() {
+
         return "Fortune [id=" + id + ", text=" + text + "]";
     }
-    
 }

@@ -7,20 +7,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class FortuneController {
-	Logger logger = LoggerFactory
-			.getLogger(FortuneController.class);
-	
-	private final FortuneService fortuneService;
 
-	public FortuneController(FortuneService fortuneService) {
-		this.fortuneService = fortuneService;
-	}
-	
-	@RequestMapping("/")
-	String getQuote(){
-		logger.debug("Fetching fortune");
-		return fortuneService.getFortune();
-	}
-		
-	
+    private final FortuneService fortuneService;
+
+    Logger logger = LoggerFactory
+     .getLogger(FortuneController.class);
+
+    public FortuneController(FortuneService fortuneService) {
+
+        this.fortuneService = fortuneService;
+    }
+
+    @RequestMapping("/")
+    String getQuote() {
+
+        logger.debug("Fetching fortune");
+        return fortuneService.getFortune();
+    }
 }

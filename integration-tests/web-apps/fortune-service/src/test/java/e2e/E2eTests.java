@@ -12,27 +12,28 @@ import org.springframework.web.client.RestTemplate;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = E2eTests.class,
-		webEnvironment = SpringBootTest.WebEnvironment.NONE)
+ webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @EnableAutoConfiguration
 public class E2eTests {
 
-	// The app is running in CF but the tests are executed from Concourse worker,
-	// so the test will deduce the url to greeting-ui: it will assume the same host
-	// as fortune-service, and simply replace "fortune-service" with "greeting-ui" in the url
+    // The app is running in CF but the tests are executed from Concourse worker,
+    // so the test will deduce the url to greeting-ui: it will assume the same host
+    // as fortune-service, and simply replace "fortune-service" with "greeting-ui" in the url
 
-	@Value("${application.url}") String applicationUrl;
+    @Value("${application.url}")
+    String applicationUrl;
 
-	RestTemplate restTemplate = new RestTemplate();
+    RestTemplate restTemplate = new RestTemplate();
 
-	@Test
-	public void should_return_a_fortune() {
-		ResponseEntity<String> response = this.restTemplate
-				.getForEntity("http://" + this.applicationUrl.replace("fortune-service", "greeting-ui") + "/", String.class);
+    @Test
+    public void should_return_a_fortune() {
 
-		BDDAssertions.then(response.getStatusCodeValue()).isEqualTo(200);
+        ResponseEntity<String> response = this.restTemplate
+         .getForEntity("http://" + this.applicationUrl.replace("fortune-service", "greeting-ui") + "/", String.class);
 
-		// Filter out the known Hystrix fallback responses from both fortune and greeting
-		BDDAssertions.then(response.getBody()).doesNotContain("This fortune is no good. Try another.").doesNotContain("The fortuneteller will be back soon.");
-	}
+        BDDAssertions.then(response.getStatusCodeValue()).isEqualTo(200);
 
+        // Filter out the known Hystrix fallback responses from both fortune and greeting
+        BDDAssertions.then(response.getBody()).doesNotContain("This fortune is no good. Try another.").doesNotContain("The fortuneteller will be back soon.");
+    }
 }

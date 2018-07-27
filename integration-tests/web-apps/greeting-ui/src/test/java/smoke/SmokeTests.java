@@ -12,23 +12,24 @@ import org.springframework.web.client.RestTemplate;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SmokeTests.class,
-        webEnvironment = SpringBootTest.WebEnvironment.NONE)
+ webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @EnableAutoConfiguration
 public class SmokeTests {
 
-	@Value("${application.url}") String applicationUrl;
+    @Value("${application.url}")
+    String applicationUrl;
 
-	RestTemplate restTemplate = new RestTemplate();
+    RestTemplate restTemplate = new RestTemplate();
 
-	@Test
-	public void should_return_a_fortune() {
-		ResponseEntity<String> response = this.restTemplate
-				.getForEntity("http://" + this.applicationUrl + "/", String.class);
+    @Test
+    public void should_return_a_fortune() {
 
-		BDDAssertions.then(response.getStatusCodeValue()).isEqualTo(200);
+        ResponseEntity<String> response = this.restTemplate
+         .getForEntity("http://" + this.applicationUrl + "/", String.class);
 
-		// Filter out the known Hystrix fallback response
-		BDDAssertions.then(response.getBody()).doesNotContain("This fortune is no good. Try another.");
-	}
+        BDDAssertions.then(response.getStatusCodeValue()).isEqualTo(200);
 
+        // Filter out the known Hystrix fallback response
+        BDDAssertions.then(response.getBody()).doesNotContain("This fortune is no good. Try another.");
+    }
 }

@@ -9,24 +9,26 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class FortuneService {
 
-  Logger logger = LoggerFactory
-          .getLogger(FortuneService.class);
+    private final RestTemplate restTemplate;
 
-  private final RestTemplate restTemplate;
+    Logger logger = LoggerFactory
+     .getLogger(FortuneService.class);
 
-  public FortuneService(RestTemplate restTemplate) {
-    this.restTemplate = restTemplate;
-  }
+    public FortuneService(RestTemplate restTemplate) {
 
-  @HystrixCommand(fallbackMethod = "defaultFortune")
-  public String getFortune() {
-    String fortune = restTemplate.getForObject("http://fortune-service", String.class);
-    return fortune;
-  }
+        this.restTemplate = restTemplate;
+    }
 
-  public String defaultFortune(){
-    logger.debug("Default fortune used.");
-    return "This fortune is no good. Try another.";
-  }
+    @HystrixCommand(fallbackMethod = "defaultFortune")
+    public String getFortune() {
 
+        String fortune = restTemplate.getForObject("http://fortune-service", String.class);
+        return fortune;
+    }
+
+    public String defaultFortune() {
+
+        logger.debug("Default fortune used.");
+        return "This fortune is no good. Try another.";
+    }
 }

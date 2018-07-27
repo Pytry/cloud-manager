@@ -13,5 +13,4 @@ public class GreetingUIApplicationTests {
     public void contextLoads() throws Exception {
 
     }
-
 }

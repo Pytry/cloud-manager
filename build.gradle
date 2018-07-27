@@ -1,4 +1,4 @@
-plugins{
+plugins {
     id 'base'
     id 'idea'
     id 'eclipse'
