@@ -6,4 +6,5 @@ spring:
       server:
         git:
           uri: https://github.optum.com/jhoopes2/configuration-service-repo.git
+          basedir: /Development/Workspace/playground/configuration-service-repo
         bootstrap: true
