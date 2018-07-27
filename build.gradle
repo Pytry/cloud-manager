@@ -1,0 +1,18 @@
+apply plugin: 'base'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+
+
+allprojects {
+
+    group = 'org.xitikit.cloud'
+    version = '0.0.1-SNAPSHOT'
+}
+
+subprojects {
+
+    apply plugin: 'base'
+    apply plugin: 'idea'
+    apply plugin: 'eclipse'
+}
+
