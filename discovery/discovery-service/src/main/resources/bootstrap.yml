@@ -1,6 +1,17 @@
 spring:
   application:
     name: discovery-service
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: configuration-service
 eureka:
   client:
-    eureka-server-port:
+    register-with-eureka: false
+    fetch-registry: false
+logging:
+  level:
+    com.netflix.eureka: OFF
+    com.netflix.discovery: OFF
+

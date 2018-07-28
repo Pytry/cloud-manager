@@ -3,3 +3,7 @@ server:
 spring:
   application:
     name: fortune-service
+  cloud:
+    config:
+      discovery:
+        service-id: configuration-service
